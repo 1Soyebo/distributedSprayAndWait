@@ -19,16 +19,9 @@ import sys
 
 filepath = "/tmp/"
 
-peers = dict()
+targets = dict()
 iconpath = "/data/uas-core/icons/uav/"
-
-class DTNPacket():
-  def __init__(self, core, source_id, destination_id, time_to_Live, session_ID):
-      self.core = core
-      self.sourceID = source_id
-      self.destionationID = destination_id
-      self.timeToLive = time_to_Live
-      self.sessionID = session_ID
+heading = random.uniform(0, 2 * math.pi)
 
 
 #---------------
@@ -45,7 +38,6 @@ def SetColor(core, session_id, node_id, color, nodetype):
   print("SetColor for Node %d: %s" % (response.node.id, response.node.icon))
 
 
-
 #---------------
 # Calculate the distance between two points (on a map)
 #---------------
@@ -57,16 +49,13 @@ def Distance(x1, y1, x2, y2):
 # Define a CORE UAV node
 #---------------
 class CoreUav():
-  def __init__(self, core, session_id, node_id, x, y, wypt_x, wypt_y, k):
-      self.core = core
+  def __init__(self, core, session_id, node_id, x, y, wypt_x, wypt_y, buffer_count):
       self.session_id = session_id
       self.node_id = node_id
-      self.peerID = -1
-      self.buffer = k
+      self.bufferCount = buffer_count
       self.position = (x,y)
       self.orig_wypt = (wypt_x,wypt_y)
       self.track_wypt = (wypt_x,wypt_y)
-      self.packet = None
 
   def getPosition(self):
     return self.position
@@ -74,36 +63,6 @@ class CoreUav():
   def setPosition(self, x, y):
     self.position = (x, y)
     return True
-    
-  def getPeerID(self):
-    return self.peerID
-    
-  def setPeerID(self, peer_ID):
-    self.peerID = peer_ID
-    return True
-    
-  def setPacket(self, packet):
-    self.packet = packet
-    
-  def getPacket(self):
-    return self.packet
-    
-  def getPotentialPeers(self, covered_zone=1200, track_range=600):
-    potential_targets = []
-
-    for peer_id in peers:
-
-      response = self.core.get_node(self.session_id, peer_id)
-      node = response.node
-      target_x, target_y = node.position.x, node.position.y
-      uav_x, uav_y = self.position[0], self.position[1]
-      distance = Distance(uav_x, uav_y, target_x, target_y)
-
-      if target_x <= covered_zone:
-        if Distance(uav_x, uav_y, target_x, target_y) <= track_range:
-          potential_targets.append(target_id)
-
-    return potential_targets
     
   def getWypt(self):
     return self.track_wypt
@@ -149,20 +108,12 @@ def MoveOnCircle(xnode, ynode, xcenter, ycenter, radius, distance):
 # Move the vehicle towards the target if it's far away,
 # or on a circle around the target if it's close enough
 #---------------
-
-# 597: Decide what the target is and the target should be another node, should move out of range after a timeout
-# define a static contact duration
-
 def MoveVehicle(xold, yold, xtrgt, ytrgt, rad, speed, duration):
   # Check whether the vehicle is outside the circle around the target  
   trgtdist = Distance(xold, yold, xtrgt, ytrgt)
   movedist = speed * duration
-  
-  # xnew, ynew = MoveToWaypoint(xold, yold, xtrgt, ytrgt, speed, duration)
-  # return xnew, ynew
-  
   if trgtdist >= rad:
-   # Check if the vehicle would still be outside the circle after moving
+    # Check if the vehicle would still be outside the circle after moving
     if trgtdist - movedist >= rad:
       xnew, ynew = MoveToWaypoint(xold, yold, xtrgt, ytrgt, speed, duration)
       return xnew, ynew
@@ -237,10 +188,11 @@ def main():
   global targets
 
   # Original waypoints
-  original_wypts = {1: (100,150), 2: (100, 300), 3: (100, 450), 4: (100, 600)}
+  original_wypts = {1: (100,150), 2: (100, 300), 3: (100, 450), 4: (100, 600)} 
+                    
+  
 
-  # Targets colors
-  # Get command line inputs
+  # Get command line inputs 
   if len(sys.argv) >= 7:
     node_id  = int(sys.argv[1])
     xuav  = int(sys.argv[2])
@@ -265,12 +217,11 @@ def main():
 
   # Set CORE UAV
   node_wypt = original_wypts[node_id]
-  k = 4
-  core_uav = CoreUav(core, session_id, node_id, xuav, yuav, node_wypt[0], node_wypt[1], k)
-  
-#  (self, core, source_id, destination_id, time_to_Live, session_ID):
-  dtn_packet = DTNPacket(core, 1, 4, 60, session_id)
-  core_uav.setPacket(dtn_packet)
+  core_uav = CoreUav(core, session_id, node_id, xuav, yuav, node_wypt[0], node_wypt[1])
+
+  # Initialize targets
+  SetColor(core, session_id, node_id, 'grey', "uav")
+
 
   print("Start XML RPC thread")
 
@@ -288,8 +239,10 @@ def main():
     xuav, yuav = MoveVehicle(xuav, yuav, xtrgt, ytrgt, rad, speed, duration)
     #print("xuav: %d, yuav: %d" % (xuav, yuav))
 
-
+    # Find UAV color to set
+    target_id = core_uav.target
     color = "grey"
+
     icon_file_path = iconpath + color + "_plane.png"
 
     # Set position and keep current UAV color

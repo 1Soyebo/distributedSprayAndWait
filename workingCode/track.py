@@ -21,7 +21,6 @@ uavs = []
 mynodeseq = 0
 nodecnt = 0
 protocol = 'none'
-# mcastaddr = '235.1.1.1'
 port = 9100
 ttl = 64
 core = None
@@ -37,10 +36,10 @@ xmlproxy = xmlrpc.client.ServerProxy("http://localhost:8000", allow_none=True)
 # Define a CORE node
 #---------------
 class CORENode():
-  def __init__(self, nodeid, bufferSize):
+  def __init__(self, nodeid, track_nodeid):
     self.nodeid = nodeid
-    self.bufferSize = bufferSize
-    
+    self.trackid = track_nodeid
+    self.oldtrackid = track_nodeid
 
   def __repr__(self):
     return str(self.nodeid)
@@ -77,7 +76,7 @@ def RedeployUAV(uavnode):
 #---------------
 def RecordTarget(uavnode):
   print("RecordTarget")
-  # xmlproxy.setTarget(uavnode.trackid)
+  #xmlproxy.setTarget(uavnode.trackid)
 
 
 #---------------
@@ -95,17 +94,11 @@ def AdvertiseUDP(uavnodeid, trgtnodeid):
 #---------------
 def ReceiveUDP():
   #print("Receive UDP")
-  # addrinfo = socket.getaddrinfo(mcastaddr, None)[0]
   sk = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
   sk.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
   # Bind
   sk.bind(('', port))
-
-  # Join group
-  group_bin = socket.inet_pton(addrinfo[0], addrinfo[4][0])
-  mreq = group_bin + struct.pack('=I', socket.INADDR_ANY)
-  sk.setsockopt(socket.IPPROTO_IP, socket.IP_ADD_MEMBERSHIP, mreq)
 
   while 1:
     buf, sender = sk.recvfrom(1500)
@@ -207,6 +200,13 @@ def TrackTargets(covered_zone, track_range):
   if protocol == "udp":
     AdvertiseUDP(uavnode.nodeid, uavnode.trackid)
     
+  # Record the target tracked for displaying proper colors
+  # Re-deploy UAV if it's not track anything
+  if uavnode.trackid != uavnode.oldtrackid:
+    uavnode.oldtrackid = uavnode.trackid
+    RecordTarget(uavnode)
+    if uavnode.trackid == -1:
+      RedeployUAV(uavnode)
   
   
 #---------------
@@ -280,7 +280,7 @@ def main():
     if protocol == "udp":    
       thrdlock.acquire()
     
-    # TrackTargets(args.covered_zone, args.track_range)
+    #TrackTargets(args.covered_zone, args.track_range)
 
     if protocol == "udp":
       thrdlock.release()

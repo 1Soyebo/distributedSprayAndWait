@@ -7,6 +7,10 @@ import sys
 import math
 import time
 import subprocess
+import random
+import datetime
+import time
+
 
 import threading
 
@@ -15,14 +19,28 @@ from core.api.grpc import core_pb2
 
 from xmlrpc.server import SimpleXMLRPCServer
 from xmlrpc.server import SimpleXMLRPCRequestHandler
+from datetime import datetime, timedelta
+
 import sys
 
 filepath = "/tmp/"
 
 targets = dict()
 iconpath = "/data/uas-core/icons/uav/"
+
 heading = random.uniform(0, 2 * math.pi)
 
+class DTNPacket():
+  def __init__(self, core, source_id, destination_id, session_ID):
+      self.core = core
+      self.sourceID = source_id
+      self.destionationID = destination_id
+      self.timeToLive = datetime.now() + timedelta(seconds=5)
+      self.sessionID = session_ID
+
+  def getDestination(self):
+    return self.destionationID
+    
 
 #---------------
 # Change icon of node based on the color
@@ -49,13 +67,14 @@ def Distance(x1, y1, x2, y2):
 # Define a CORE UAV node
 #---------------
 class CoreUav():
-  def __init__(self, core, session_id, node_id, x, y, wypt_x, wypt_y, buffer_count):
+  def __init__(self, core, session_id, node_id, x, y, wypt_x, wypt_y, k):
       self.session_id = session_id
       self.node_id = node_id
-      self.bufferCount = buffer_count
+      self.bufferCount = k
       self.position = (x,y)
       self.orig_wypt = (wypt_x,wypt_y)
       self.track_wypt = (wypt_x,wypt_y)
+      self.packet = None
 
   def getPosition(self):
     return self.position
@@ -63,6 +82,27 @@ class CoreUav():
   def setPosition(self, x, y):
     self.position = (x, y)
     return True
+
+  def getBufferCount(self):
+    return self.bufferCount
+    
+  def setBufferCount(self, count):
+    self.bufferCount = count
+    return True
+  
+  def getPacket(self):
+    return self.packet
+    
+  def setPacket(self, packetToSave):
+    self.packet = packetToSave
+    return True
+  
+  def hasPacket(self):
+    return self.packet != None
+  
+  def getPacketDestination(self):
+    destinationID = self.packet.getDestination()
+    
     
   def getWypt(self):
     return self.track_wypt
@@ -113,7 +153,7 @@ def MoveVehicle(xold, yold, xtrgt, ytrgt, rad, speed, duration):
   trgtdist = Distance(xold, yold, xtrgt, ytrgt)
   movedist = speed * duration
   if trgtdist >= rad:
-    # Check if the vehicle would still be outside the circle after moving
+   # Check if the vehicle would still be outside the circle after moving
     if trgtdist - movedist >= rad:
       xnew, ynew = MoveToWaypoint(xold, yold, xtrgt, ytrgt, speed, duration)
       return xnew, ynew
@@ -157,6 +197,7 @@ def MoveVehicle(xold, yold, xtrgt, ytrgt, rad, speed, duration):
       xnew, ynew = MoveOnCircle(xcircle, ycircle, xtrgt, ytrgt, rad, circledist)
       return xnew, ynew
 
+
 #---------------
 # Initialize XML RPC Server for CORE scenario
 #---------------
@@ -190,6 +231,9 @@ def main():
   # Original waypoints
   original_wypts = {1: (100,150), 2: (100, 300), 3: (100, 450), 4: (100, 600)} 
                     
+
+  # Targets colors
+  colors = ['blue', 'yellow', 'green', 'red', 'lime', 'orange', 'pink', 'purple', 'lavender', 'cyan']
   
 
   # Get command line inputs 
@@ -199,7 +243,9 @@ def main():
     yuav  = int(sys.argv[3])
     rad   = int(sys.argv[4])
     speed = float(sys.argv[5])
-    msecduration  = float(sys.argv[6])
+    msecduration  = float(sys.argv[6])	
+    bufferCount = int(sys.argv[7])
+    hasPacket = bool(sys.argv[8])
     duration = msecduration/1000
   else:
     print("move_node.py nodenum xuav yuav radius speed duration(msec)\n")
@@ -217,7 +263,12 @@ def main():
 
   # Set CORE UAV
   node_wypt = original_wypts[node_id]
-  core_uav = CoreUav(core, session_id, node_id, xuav, yuav, node_wypt[0], node_wypt[1])
+  core_uav = CoreUav(core, session_id, node_id, xuav, yuav, node_wypt[0], node_wypt[1], bufferCount)
+
+  if hasPacket:
+    dtn_packet = DTNPacket(core=core, source_id=1, destination_id= 4, session_ID=session_id)
+    core_uav.setPacket(dtn_packet)
+    print()
 
   # Initialize targets
   SetColor(core, session_id, node_id, 'grey', "uav")
@@ -239,10 +290,8 @@ def main():
     xuav, yuav = MoveVehicle(xuav, yuav, xtrgt, ytrgt, rad, speed, duration)
     #print("xuav: %d, yuav: %d" % (xuav, yuav))
 
-    # Find UAV color to set
-    target_id = core_uav.target
-    color = "grey"
 
+    color = "grey"
     icon_file_path = iconpath + color + "_plane.png"
 
     # Set position and keep current UAV color

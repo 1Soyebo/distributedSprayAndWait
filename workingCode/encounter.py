@@ -36,10 +36,9 @@ xmlproxy = xmlrpc.client.ServerProxy("http://localhost:8000", allow_none=True)
 # Define a CORE node
 #---------------
 class CORENode():
-  def __init__(self, nodeid, track_nodeid):
+  def __init__(self, nodeid, bufferCount):
     self.nodeid = nodeid
-    self.trackid = track_nodeid
-    self.oldtrackid = track_nodeid
+    self.bufferCount = bufferCount
 
   def __repr__(self):
     return str(self.nodeid)
@@ -123,13 +122,12 @@ def UpdateTracking(uavnodeid, trgtnodeid):
   in_uavs = False
   for uavnode in uavs:
     if uavnode.nodeid == uavnodeid:
-      uavnode.trackid = trgtnodeid
       in_uavs = True
 
   # Otherwise add UAV node to UAV list
   if not in_uavs:
     node = CORENode(uavnodeid, trgtnodeid)
-    uavs.append(node)   
+    uavs[1] = node   
       
   if protocol == "udp":
     thrdlock.release()

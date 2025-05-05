@@ -233,6 +233,8 @@ def main():
                       type=int, default = '1', help='Update Inteval')
   parser.add_argument('-p','--protocol', dest = 'protocol', metavar='comms protocol',
                       type=str, default = 'none', help='Comms Protocol')
+  parser.add_argument('-bc','--buffer_count', dest = 'buffer_count', metavar='buffer count',
+                      type=int, default = '0', help='Buffer Count')
 
   
   # Parse command line options
@@ -252,7 +254,7 @@ def main():
 
   # Populate the uavs list with current UAV node information
   mynodeseq = 0
-  node = CORENode(args.uav_id, -1)
+  node = CORENode(args.uav_id, args.buffer_count)
   uavs.append(node)
   RedeployUAV(node)
   RecordTarget(node)

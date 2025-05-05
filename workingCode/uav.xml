@@ -78,19 +78,13 @@
         echo 100 450 &gt; /tmp/n3_orig_wypt.txt
         echo 100 600 &gt; /tmp/n4_orig_wypt.txt
 
-        # Set multicast routes
-        vcmd -c /tmp/pycore.*/n1 -- /sbin/ip route add 224.0.0.0/4 dev eth0
-        vcmd -c /tmp/pycore.*/n2 -- /sbin/ip route add 224.0.0.0/4 dev eth0
-        vcmd -c /tmp/pycore.*/n3 -- /sbin/ip route add 224.0.0.0/4 dev eth0
-        vcmd -c /tmp/pycore.*/n4 -- /sbin/ip route add 224.0.0.0/4 dev eth0
-
         sleep 5
 
         # Start mobility scripts
-        vcmd -c /tmp/pycore.*/n1 -- core-python -u /data/uas-core/move_node_grpc.py 1 67 36 70 40 200 &gt; /tmp/move_n1.log 2&gt;&amp;1 &amp;
-        vcmd -c /tmp/pycore.*/n2 -- core-python -u /data/uas-core/move_node_grpc.py 2 67 85 70 40 200 &gt; /tmp/move_n2.log 2&gt;&amp;1 &amp;
-        vcmd -c /tmp/pycore.*/n3 -- core-python -u /data/uas-core/move_node_grpc.py 3 67 139 70 40 200 &gt; /tmp/move_n3.log 2&gt;&amp;1 &amp;
-        vcmd -c /tmp/pycore.*/n4 -- core-python -u /data/uas-core/move_node_grpc.py 4 67 186 70 40 200 &gt; /tmp/move_n4.log 2&gt;&amp;1 &amp;</hook>
+        vcmd -c /tmp/pycore.*/n1 -- core-python -u /data/uas-core/move_node_grpc.py 1 67 36 70 40 200 2 true &gt; /tmp/move_n1.log 2&gt;&amp;1 &amp;
+        vcmd -c /tmp/pycore.*/n2 -- core-python -u /data/uas-core/move_node_grpc.py 2 67 85 70 40 200 0 false &gt; /tmp/move_n2.log 2&gt;&amp;1 &amp;
+        vcmd -c /tmp/pycore.*/n3 -- core-python -u /data/uas-core/move_node_grpc.py 3 67 139 70 40 200 0 false &gt; /tmp/move_n3.log 2&gt;&amp;1 &amp;
+        vcmd -c /tmp/pycore.*/n4 -- core-python -u /data/uas-core/move_node_grpc.py 4 67 186 70 40 200 0 false &gt; /tmp/move_n4.log 2&gt;&amp;1 &amp;</hook>
   </session_hooks>
   <session_options>
     <configuration name="controlnet" value="172.16.0.0/24"/>

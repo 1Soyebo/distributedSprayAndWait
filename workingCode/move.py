@@ -103,7 +103,6 @@ class CoreUav():
   def getPacketDestination(self):
     destinationID = self.packet.getDestination()
     
-    
   def getWypt(self):
     return self.track_wypt
 
@@ -287,12 +286,12 @@ def main():
     time.sleep(duration)
     position = core_uav.getWypt()
     xtrgt, ytrgt = position[0], position[1] 
-    xuav, yuav = MoveVehicle(xuav, yuav, xtrgt, ytrgt, rad, speed, duration)
+    xuav, yuav = MoveToWaypoint(xuav, yuav, xtrgt, ytrgt, speed, duration)
     #print("xuav: %d, yuav: %d" % (xuav, yuav))
 
 
-    color = "grey"
-    icon_file_path = iconpath + color + "_plane.png"
+    color = "black"
+    icon_file_path = iconpath + color + "_phone.png"
 
     # Set position and keep current UAV color
     pos = core_pb2.Position(x = xuav, y = yuav)

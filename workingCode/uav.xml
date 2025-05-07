@@ -6,25 +6,25 @@
     </network>
   </networks>
   <devices>
-    <device id="1" name="n1" icon="/data/uas-core/icons/uav/grey_plane.png" type="PC" class="" image="">
+    <device id="1" name="n1" icon="/data/uas-core/icons/sw/black_phone.png" type="PC" class="" image="">
       <position x="513.12255859375" y="583.9696655273438" lat="47.573858057766884" lon="-122.1254100311948" alt="2.0"/>
       <services>
         <service name="DefaultRoute"/>
       </services>
     </device>
-    <device id="2" name="n2" icon="/data/uas-core/icons/uav/grey_plane.png" type="PC" class="" image="">
+    <device id="2" name="n2" icon="/data/uas-core/icons/sw/black_phone.png" type="PC" class="" image="">
       <position x="135.6212158203125" y="470.8236999511719" lat="47.57488661025367" lon="-122.13049675958463" alt="2.0"/>
       <services>
         <service name="DefaultRoute"/>
       </services>
     </device>
-    <device id="3" name="n3" icon="/data/uas-core/icons/uav/grey_plane.png" type="PC" class="" image="">
+    <device id="3" name="n3" icon="/data/uas-core/icons/sw/black_phone.png" type="PC" class="" image="">
       <position x="477.8213806152344" y="201.62350463867188" lat="47.57733369124197" lon="-122.1258857050107" alt="2.0"/>
       <services>
         <service name="DefaultRoute"/>
       </services>
     </device>
-    <device id="4" name="n4" icon="/data/uas-core/icons/uav/grey_plane.png" type="PC" class="" image="">
+    <device id="4" name="n4" icon="/data/uas-core/icons/sw/black_phone.png" type="PC" class="" image="">
       <position x="141.64002990722656" y="230.927001953125" lat="47.577067322423446" lon="-122.13041565769436" alt="2.0"/>
       <services>
         <service name="DefaultRoute"/>
@@ -47,7 +47,7 @@
   </links>
   <mobility_configurations>
     <mobility_configuration node="21" model="basic_range">
-      <configuration name="range" value="1100"/>
+      <configuration name="range" value="150"/>
       <configuration name="bandwidth" value="54000000"/>
       <configuration name="jitter" value="0"/>
       <configuration name="delay" value="200000"/>
@@ -73,18 +73,28 @@
         # specified state
 
         # Set initial waypoints
-        echo 100 150 &gt; /tmp/n1_orig_wypt.txt
-        echo 100 300 &gt; /tmp/n2_orig_wypt.txt
-        echo 100 450 &gt; /tmp/n3_orig_wypt.txt
-        echo 100 600 &gt; /tmp/n4_orig_wypt.txt
+        echo 600 200 &gt; /tmp/n1_orig_wypt.txt
+        echo 1000 200 &gt; /tmp/n2_orig_wypt.txt
+        echo 600 800 &gt; /tmp/n3_orig_wypt.txt
+        echo 1000 800 &gt; /tmp/n4_orig_wypt.txt
 
         sleep 5
 
-        # Start mobility scripts
-        vcmd -c /tmp/pycore.*/n1 -- core-python -u /data/uas-core/move_node_grpc.py 1 67 36 70 40 200 2 true &gt; /tmp/move_n1.log 2&gt;&amp;1 &amp;
-        vcmd -c /tmp/pycore.*/n2 -- core-python -u /data/uas-core/move_node_grpc.py 2 67 85 70 40 200 0 false &gt; /tmp/move_n2.log 2&gt;&amp;1 &amp;
-        vcmd -c /tmp/pycore.*/n3 -- core-python -u /data/uas-core/move_node_grpc.py 3 67 139 70 40 200 0 false &gt; /tmp/move_n3.log 2&gt;&amp;1 &amp;
-        vcmd -c /tmp/pycore.*/n4 -- core-python -u /data/uas-core/move_node_grpc.py 4 67 186 70 40 200 0 false &gt; /tmp/move_n4.log 2&gt;&amp;1 &amp;</hook>
+        # Start move.py scripts
+        vcmd -c /tmp/pycore.*/n1 -- core-python -u /data/uas-core/move.py 1 200 200 70 40 200 2 true &gt; /tmp/move_n1.log 2&gt;&amp;1 &amp;
+        vcmd -c /tmp/pycore.*/n2 -- core-python -u /data/uas-core/move.py 2 1350 200 70 40 200 0 false &gt; /tmp/move_n2.log 2&gt;&amp;1 &amp;
+        vcmd -c /tmp/pycore.*/n3 -- core-python -u /data/uas-core/move.py 3 200 800 70 40 200 0 false &gt; /tmp/move_n3.log 2&gt;&amp;1 &amp;
+        vcmd -c /tmp/pycore.*/n4 -- core-python -u /data/uas-core/move.py 4 1350 800 70 40 200 0 false &gt; /tmp/move_n4.log 2&gt;&amp;1 &amp;
+
+        sleep 1
+
+        # Start encounter.py scripts
+        vcmd -c /tmp/pycore.*/n1 -- core-python -u /data/uas-core/encounter.py -my 1 -c 1200 -r 600 -i 1000 -p none &gt; /tmp/encounter_n1.log 2&gt;&amp;1 &amp;
+        vcmd -c /tmp/pycore.*/n2 -- core-python -u /data/uas-core/encounter.py -my 2 -c 1200 -r 600 -i 1000 -p none &gt; /tmp/encounter_n2.log 2&gt;&amp;1 &amp;
+        vcmd -c /tmp/pycore.*/n3 -- core-python -u /data/uas-core/encounter.py -my 3 -c 1200 -r 600 -i 1000 -p none &gt; /tmp/encounter_n3.log 2&gt;&amp;1 &amp;
+        vcmd -c /tmp/pycore.*/n4 -- core-python -u /data/uas-core/encounter.py -my 4 -c 1200 -r 600 -i 1000 -p none &gt; /tmp/encounter_n4.log 2&gt;&amp;1 &amp;
+
+        </hook>
   </session_hooks>
   <session_options>
     <configuration name="controlnet" value="172.16.0.0/24"/>

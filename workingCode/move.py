@@ -26,7 +26,7 @@ import sys
 filepath = "/tmp/"
 
 targets = dict()
-iconpath = "/data/uas-core/icons/uav/"
+iconpath = "/data/uas-core/icons/sw/"
 
 heading = random.uniform(0, 2 * math.pi)
 
@@ -210,7 +210,8 @@ class StartXmlRpcServerThread(threading.Thread):
 
 def StartXmlRpcServer(core_uav):
   while 1: 
-    with SimpleXMLRPCServer(("localhost", 8000)) as server:
+    # with SimpleXMLRPCServer(("localhost", 8000)) as server:
+    with SimpleXMLRPCServer(("localhost", 8000 + core_uav.node_id)) as server:
       server.register_instance(core_uav, allow_dotted_names=True)
       server.register_multicall_functions()
       print('Serving XML-RPC on localhost port 8000')
@@ -228,7 +229,7 @@ def main():
   global targets
 
   # Original waypoints
-  original_wypts = {1: (100,150), 2: (100, 300), 3: (100, 450), 4: (100, 600)} 
+  original_wypts = {1: (600, 200), 2: (1000, 200), 3: (600, 800), 4: (1000, 800)} 
                     
 
   # Targets colors

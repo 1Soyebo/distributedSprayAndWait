@@ -31,21 +31,21 @@ nodepath = ''
 
 # Predefined waypoint paths per node
 pseudorandom_paths = {
-    1: [(100,100), (200,300), (150,500), (100,700), (300,750),
-        (500,600), (400,400), (300,200), (200,150), (100,100)],
-    2: [(600,100), (650,250), (700,400), (800,600), (700,800),
-        (500,700), (400,550), (500,300), (550,150), (600,100)],
-    3: [(200,900), (400,850), (600,800), (750,700), (850,500),
-        (800,300), (700,200), (600,100), (400,150), (200,900)],
-    4: [(900,900), (850,700), (800,500), (750,300), (700,100),
-        (500,200), (400,400), (300,600), (600,750), (900,900)],
+    1: [(200, 200), (600, 200), (1000, 200), (1200, 400), (1000, 700),
+        (600, 700), (200, 700), (350, 500), (600, 400), (200, 200)],
+    2: [(1350, 200), (1000, 200), (600, 200), (400, 400), (600, 600),
+        (1000, 600), (1350, 600), (1200, 400), (1000, 200), (1350, 200)],
+    3: [(200, 800), (600, 800), (1000, 800), (1200, 600), (1000, 400),
+        (600, 400), (200, 400), (350, 600), (600, 700), (200, 800)],
+    4: [(1350, 800), (1000, 800), (600, 800), (400, 600), (600, 400),
+        (1000, 400), (1350, 400), (1200, 600), (1000, 800), (1350, 800)],
 }
 
 # Index tracking per node
 waypoint_indices = {1: 0, 2: 0, 3: 0, 4: 0}
 
 thrdlock = threading.Lock()
-xmlproxy = xmlrpc.client.ServerProxy("http://localhost:8000", allow_none=True)
+# xmlproxy = xmlrpc.client.ServerProxy("http://localhost:8000", allow_none=True)
 
 #---------------
 # Define a CORE node
@@ -238,6 +238,15 @@ def update_uav_waypoint(uav_id):
         print(f"UAV {uav_id} reached {current_wp}, setting next to {next_wp}")
         xmlproxy.setWypt(*next_wp)
 
+    if distance(xuav, yuav, *current_wp) < 10:
+        waypoint_indices[uav_id] += 1
+        next_wp = path[waypoint_indices[uav_id] % len(path)]
+        print(f"Node {uav_id}: reached {current_wp}, setting next waypoint {next_wp}")
+        xmlproxy.setWypt(*next_wp)
+    else:
+        print(f"Node {uav_id}: distance to {current_wp} is {distance(xuav, yuav, *current_wp):.2f}, not updating")
+
+
   
 
 #---------------
@@ -270,6 +279,9 @@ def main():
   args = parser.parse_args()
 
   protocol = args.protocol
+  global xmlproxy
+  xmlproxy = xmlrpc.client.ServerProxy(f"http://localhost:{8000 + args.uav_id}", allow_none=True)
+
 
   # Create grpc client
   core = client.CoreGrpcClient("172.16.0.254:50051")
@@ -306,7 +318,7 @@ def main():
         
   # Start tracking targets
   while 1:
-    time.sleep(0.2)
+    time.sleep(secinterval)
     update_uav_waypoint(args.uav_id)
 
     # if protocol == "udp":    

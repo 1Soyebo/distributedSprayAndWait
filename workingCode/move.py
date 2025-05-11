@@ -123,10 +123,13 @@ class CoreUav():
 def MoveToWaypoint(xold, yold, xwypt, ywypt, speed, duration):
   movedist = speed * duration
   totaldist = Distance(xold, yold, xwypt, ywypt)
-  ratio = movedist/totaldist
 
-  xnew = xold + (xwypt-xold)*ratio
-  ynew = yold + (ywypt-yold)*ratio
+  if totaldist == 0:
+    return xold, yold  # Already at target, no move needed
+
+  ratio = movedist / totaldist
+  xnew = xold + (xwypt - xold) * ratio
+  ynew = yold + (ywypt - yold) * ratio
 
   return xnew, ynew
 

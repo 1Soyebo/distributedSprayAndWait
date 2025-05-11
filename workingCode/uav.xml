@@ -73,18 +73,18 @@
         # specified state
 
         # Set initial waypoints
-        echo 600 200 &gt; /tmp/n1_orig_wypt.txt
-        echo 1000 200 &gt; /tmp/n2_orig_wypt.txt
-        echo 600 800 &gt; /tmp/n3_orig_wypt.txt
-        echo 1000 800 &gt; /tmp/n4_orig_wypt.txt
+        echo 200 200 &gt; /tmp/n1_orig_wypt.txt
+        echo 1350 200 &gt; /tmp/n2_orig_wypt.txt
+        echo 200 800 &gt; /tmp/n3_orig_wypt.txt
+        echo 1350 800 &gt; /tmp/n4_orig_wypt.txt
 
         sleep 5
 
         # Start move.py scripts
-        vcmd -c /tmp/pycore.*/n1 -- core-python -u /data/uas-core/move.py 1 200 200 70 40 200 2 true &gt; /tmp/move_n1.log 2&gt;&amp;1 &amp;
-        vcmd -c /tmp/pycore.*/n2 -- core-python -u /data/uas-core/move.py 2 1350 200 70 40 200 0 false &gt; /tmp/move_n2.log 2&gt;&amp;1 &amp;
-        vcmd -c /tmp/pycore.*/n3 -- core-python -u /data/uas-core/move.py 3 200 800 70 40 200 0 false &gt; /tmp/move_n3.log 2&gt;&amp;1 &amp;
-        vcmd -c /tmp/pycore.*/n4 -- core-python -u /data/uas-core/move.py 4 1350 800 70 40 200 0 false &gt; /tmp/move_n4.log 2&gt;&amp;1 &amp;
+        vcmd -c /tmp/pycore.*/n1 -- core-python -u /data/uas-core/move.py 1 200 200 70 80 200 2 true &gt; /tmp/move_n1.log 2&gt;&amp;1 &amp;
+        vcmd -c /tmp/pycore.*/n2 -- core-python -u /data/uas-core/move.py 2 1350 200 70 80 200 0 false &gt; /tmp/move_n2.log 2&gt;&amp;1 &amp;
+        vcmd -c /tmp/pycore.*/n3 -- core-python -u /data/uas-core/move.py 3 200 800 70 80 200 0 false &gt; /tmp/move_n3.log 2&gt;&amp;1 &amp;
+        vcmd -c /tmp/pycore.*/n4 -- core-python -u /data/uas-core/move.py 4 1350 800 70 80 200 0 false &gt; /tmp/move_n4.log 2&gt;&amp;1 &amp;
 
         sleep 1
 

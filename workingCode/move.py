@@ -248,7 +248,7 @@ def main():
     speed = float(sys.argv[5])
     msecduration  = float(sys.argv[6])	
     bufferCount = int(sys.argv[7])
-    hasPacket = bool(sys.argv[8])
+    hasPacket = sys.argv[8].lower() == "true"
     duration = msecduration/1000
   else:
     print("move_node.py nodenum xuav yuav radius speed duration(msec)\n")

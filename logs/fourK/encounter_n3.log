@@ -1,0 +1,93 @@
+Redeploy UAV
+Node 3: distance to (600, 800) is 272.00, not updating
+AdvertiseUDP (broadcast)
+I receieved 3 0 -1
+Node 3: distance to (600, 800) is 192.00, not updating
+AdvertiseUDP (broadcast)
+I receieved 3 0 -1
+Node 3: distance to (600, 800) is 112.00, not updating
+AdvertiseUDP (broadcast)
+I receieved 3 0 -1
+Node 3: distance to (600, 800) is 32.00, not updating
+AdvertiseUDP (broadcast)
+I receieved 3 0 -1
+Node 3: reached (600, 800), setting next waypoint (1000, 800)
+AdvertiseUDP (broadcast)
+I receieved 3 0 -1
+Node 3: distance to (1000, 800) is 320.00, not updating
+AdvertiseUDP (broadcast)
+I receieved 3 0 -1
+Node 3: distance to (1000, 800) is 240.00, not updating
+AdvertiseUDP (broadcast)
+I receieved 3 0 -1
+Node 3: distance to (1000, 800) is 176.00, not updating
+AdvertiseUDP (broadcast)
+I receieved 3 0 -1
+I receieved 4 0 -1
+Node 3: distance to (1000, 800) is 96.00, not updating
+AdvertiseUDP (broadcast)
+I receieved 3 0 -1
+I receieved 4 0 -1
+Node 3: distance to (1000, 800) is 32.00, not updating
+AdvertiseUDP (broadcast)
+I receieved 3 0 -1
+Node 3: reached (1000, 800), setting next waypoint (1200, 600)
+AdvertiseUDP (broadcast)
+I receieved 3 0 -1
+Node 3: distance to (1200, 600) is 202.84, not updating
+AdvertiseUDP (broadcast)
+I receieved 3 0 -1
+Node 3: distance to (1200, 600) is 122.84, not updating
+AdvertiseUDP (broadcast)
+I receieved 3 0 -1
+Node 3: distance to (1200, 600) is 42.84, not updating
+AdvertiseUDP (broadcast)
+I receieved 3 0 -1
+Node 3: reached (1200, 600), setting next waypoint (1000, 400)
+AdvertiseUDP (broadcast)
+I receieved 3 0 -1
+Node 3: distance to (1000, 400) is 218.89, not updating
+AdvertiseUDP (broadcast)
+I receieved 3 0 -1
+I receieved 1 1 4
+Node 3: distance to (1000, 400) is 138.89, not updating
+AdvertiseUDP (broadcast)
+I receieved 3 0 4
+I receieved 1 1 4
+Node 3: distance to (1000, 400) is 58.89, not updating
+AdvertiseUDP (broadcast)
+I receieved 3 0 4
+I receieved 1 1 4
+Node 3: distance to (1000, 400) is 10.89, not updating
+AdvertiseUDP (broadcast)
+I receieved 3 0 4
+Node 3: reached (1000, 400), setting next waypoint (600, 400)
+AdvertiseUDP (broadcast)
+I receieved 3 0 4
+Node 3: distance to (600, 400) is 316.34, not updating
+AdvertiseUDP (broadcast)
+I receieved 3 0 4
+Node 3: distance to (600, 400) is 236.34, not updating
+AdvertiseUDP (broadcast)
+I receieved 3 0 4
+Node 3: distance to (600, 400) is 172.34, not updating
+AdvertiseUDP (broadcast)
+I receieved 3 0 4
+Node 3: distance to (600, 400) is 92.34, not updating
+AdvertiseUDP (broadcast)
+I receieved 3 0 4
+I receieved 4 1 4
+Node 3: distance to (600, 400) is 28.34, not updating
+AdvertiseUDP (broadcast)
+I receieved 3 0 4
+Node 3: distance to (600, 400) is 12.34, not updating
+AdvertiseUDP (broadcast)
+I receieved 3 0 4
+Node 3: reached (600, 400), setting next waypoint (200, 400)
+AdvertiseUDP (broadcast)
+I receieved 3 0 4
+Node 3: distance to (200, 400) is 380.34, not updating
+AdvertiseUDP (broadcast)
+I receieved 3 0 4
+vcmd[29161]: 18:01:00.729218 vcmd_ioerrorcb[vcmd_main.c:216]: i/o error
+vcmd[29161]: 18:01:00.729767 vcmd_cmddonecb[vcmd_main.c:162]: unexpected termination status for command 0: 0xffffffff

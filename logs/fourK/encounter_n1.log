@@ -1,0 +1,106 @@
+Redeploy UAV
+this node has the packet 1
+the desitination of this packet is 4
+node 1 has 2 packets
+Node 1: distance to (600, 200) is 240.00, not updating
+AdvertiseUDP (broadcast)
+I receieved 1 2 4
+Node 1: distance to (600, 200) is 176.00, not updating
+AdvertiseUDP (broadcast)
+I receieved 1 2 4
+Node 1: distance to (600, 200) is 96.00, not updating
+AdvertiseUDP (broadcast)
+I receieved 1 2 4
+Node 1: distance to (600, 200) is 16.00, not updating
+AdvertiseUDP (broadcast)
+I receieved 1 2 4
+Node 1: reached (600, 200), setting next waypoint (1000, 200)
+AdvertiseUDP (broadcast)
+I receieved 1 2 4
+Node 1: distance to (1000, 200) is 320.00, not updating
+AdvertiseUDP (broadcast)
+I receieved 1 2 4
+Node 1: distance to (1000, 200) is 240.00, not updating
+AdvertiseUDP (broadcast)
+I receieved 1 2 4
+I receieved 2 0 -1
+I am decrementing my buffer to 1
+My new buffer count is 1
+Node 1: distance to (1000, 200) is 176.00, not updating
+AdvertiseUDP (broadcast)
+I receieved 1 1 4
+I receieved 2 1 4
+Node 1: distance to (1000, 200) is 96.00, not updating
+AdvertiseUDP (broadcast)
+I receieved 1 1 4
+I receieved 2 1 4
+Node 1: distance to (1000, 200) is 32.00, not updating
+AdvertiseUDP (broadcast)
+I receieved 1 1 4
+Node 1: reached (1000, 200), setting next waypoint (1200, 400)
+AdvertiseUDP (broadcast)
+I receieved 1 1 4
+Node 1: distance to (1200, 400) is 202.84, not updating
+AdvertiseUDP (broadcast)
+I receieved 1 1 4
+Node 1: distance to (1200, 400) is 122.84, not updating
+AdvertiseUDP (broadcast)
+I receieved 1 1 4
+Node 1: distance to (1200, 400) is 42.84, not updating
+AdvertiseUDP (broadcast)
+I receieved 1 1 4
+Node 1: reached (1200, 400), setting next waypoint (1000, 700)
+AdvertiseUDP (broadcast)
+I receieved 1 1 4
+Node 1: distance to (1000, 700) is 295.58, not updating
+AdvertiseUDP (broadcast)
+I receieved 1 1 4
+Node 1: distance to (1000, 700) is 215.58, not updating
+AdvertiseUDP (broadcast)
+I receieved 1 1 4
+I receieved 3 0 4
+Node 1: distance to (1000, 700) is 135.58, not updating
+AdvertiseUDP (broadcast)
+I receieved 1 1 4
+Node 1: distance to (1000, 700) is 55.58, not updating
+AdvertiseUDP (broadcast)
+I receieved 1 1 4
+Node 1: reached (1000, 700), setting next waypoint (600, 700)
+AdvertiseUDP (broadcast)
+I receieved 1 1 4
+Node 1: distance to (600, 700) is 324.34, not updating
+AdvertiseUDP (broadcast)
+I receieved 1 1 4
+Node 1: distance to (600, 700) is 260.34, not updating
+AdvertiseUDP (broadcast)
+I receieved 1 1 4
+Node 1: distance to (600, 700) is 180.34, not updating
+AdvertiseUDP (broadcast)
+I receieved 1 1 4
+Node 1: distance to (600, 700) is 100.34, not updating
+AdvertiseUDP (broadcast)
+I receieved 1 1 4
+I receieved 2 1 4
+Node 1: distance to (600, 700) is 20.34, not updating
+AdvertiseUDP (broadcast)
+I receieved 1 1 4
+Node 1: distance to (600, 700) is 11.66, not updating
+AdvertiseUDP (broadcast)
+I receieved 1 1 4
+Node 1: reached (600, 700), setting next waypoint (200, 700)
+AdvertiseUDP (broadcast)
+I receieved 1 1 4
+Node 1: distance to (200, 700) is 404.34, not updating
+AdvertiseUDP (broadcast)
+Traceback (most recent call last):
+  File "/home/ee597/uav/workingCode/encounter.py", line 303, in <module>
+    main()
+  File "/home/ee597/uav/workingCode/encounter.py", line 290, in main
+    SprayAndWaitAdvert()
+  File "/home/ee597/uav/workingCode/encounter.py", line 207, in SprayAndWaitAdvert
+    AdvertiseUDP(uavnode.nodeid, uavnode.bufferCount, destination)
+  File "/home/ee597/uav/workingCode/encounter.py", line 106, in AdvertiseUDP
+    sk.sendto(buf.encode(encoding='utf-8',errors='strict'), ('255.255.255.255', port))
+OSError: [Errno 101] Network is unreachable
+vcmd[29159]: 18:01:01.049704 vcmd_ioerrorcb[vcmd_main.c:216]: i/o error
+vcmd[29159]: 18:01:01.051149 vcmd_cmddonecb[vcmd_main.c:162]: unexpected termination status for command 0: 0xffffffff

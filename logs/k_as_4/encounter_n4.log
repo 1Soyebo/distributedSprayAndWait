@@ -1,0 +1,261 @@
+Redeploy UAV
+Node 4: distance to (1000, 800) is 190.00, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:01.352992
+I receieved 4 0 -1
+Node 4: distance to (1000, 800) is 110.00, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:02.368607
+I receieved 4 0 -1
+Node 4: distance to (1000, 800) is 30.00, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:03.379023
+I receieved 4 0 -1
+Node 4: distance to (1000, 800) is 14.00, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:04.388891
+I receieved 4 0 -1
+Node 4: reached (1000, 800), setting next waypoint (600, 800)
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:05.405693
+I receieved 4 0 -1
+Node 4: distance to (600, 800) is 334.00, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:06.419532
+I receieved 4 0 -1
+Node 4: distance to (600, 800) is 254.00, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:07.428810
+I receieved 4 0 -1
+I receieved 3 0 -1
+Node 4: distance to (600, 800) is 174.00, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:08.441287
+I receieved 4 0 -1
+I receieved 3 0 -1
+Node 4: distance to (600, 800) is 94.00, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:09.455602
+I receieved 4 0 -1
+Node 4: distance to (600, 800) is 14.00, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:10.468292
+I receieved 4 0 -1
+Node 4: reached (600, 800), setting next waypoint (400, 600)
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:11.484918
+I receieved 4 0 -1
+Node 4: distance to (400, 600) is 217.43, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:12.502480
+I receieved 4 0 -1
+Node 4: distance to (400, 600) is 137.43, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:13.513129
+I receieved 4 0 -1
+Node 4: distance to (400, 600) is 57.43, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:14.523182
+I receieved 4 0 -1
+Node 4: reached (400, 600), setting next waypoint (600, 400)
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:15.539701
+I receieved 4 0 -1
+Node 4: distance to (600, 400) is 203.05, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:16.556059
+I receieved 4 0 -1
+I receieved 2 2 4
+I am incrementing my buffer to 1
+My new buffer count is 1
+Node 4: distance to (600, 400) is 123.05, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:17.565689
+I receieved 4 1 4
+I receieved 2 1 4
+Node 4: distance to (600, 400) is 59.05, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:18.576813
+I receieved 4 1 4
+Node 4: distance to (600, 400) is 11.05, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:19.585985
+I receieved 4 1 4
+Node 4: reached (600, 400), setting next waypoint (1000, 400)
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:20.599183
+I receieved 4 1 4
+Node 4: distance to (1000, 400) is 316.63, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:21.608843
+I receieved 4 1 4
+Node 4: distance to (1000, 400) is 252.63, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:22.620375
+I receieved 4 1 4
+I receieved 3 1 4
+Node 4: distance to (1000, 400) is 172.63, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:23.630815
+I receieved 4 1 4
+I receieved 3 1 4
+Node 4: distance to (1000, 400) is 92.63, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:24.640213
+I receieved 4 1 4
+Node 4: distance to (1000, 400) is 12.63, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:25.655543
+I receieved 4 1 4
+Node 4: reached (1000, 400), setting next waypoint (1350, 400)
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:26.672350
+I receieved 4 1 4
+Node 4: distance to (1350, 400) is 266.63, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:27.683720
+I receieved 4 1 4
+Node 4: distance to (1350, 400) is 202.63, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:28.694909
+I receieved 4 1 4
+Node 4: distance to (1350, 400) is 122.63, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:29.702261
+I receieved 4 1 4
+Node 4: distance to (1350, 400) is 42.63, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:30.709695
+I receieved 4 1 4
+Node 4: reached (1350, 400), setting next waypoint (1200, 600)
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:31.721606
+I receieved 4 1 4
+Node 4: distance to (1200, 600) is 173.26, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:32.729354
+I receieved 4 1 4
+Node 4: distance to (1200, 600) is 109.26, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:33.792037
+I receieved 4 1 4
+I receieved 2 1 4
+Node 4: distance to (1200, 600) is 29.26, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:34.802386
+I receieved 4 1 4
+Node 4: distance to (1200, 600) is 13.26, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:35.814569
+I receieved 4 1 4
+I receieved 2 1 4
+Node 4: reached (1200, 600), setting next waypoint (800, 600)
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:36.829324
+I receieved 4 1 4
+I receieved 2 1 4
+Node 4: distance to (800, 600) is 334.32, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:37.839906
+I receieved 4 1 4
+Node 4: distance to (800, 600) is 254.32, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:38.848900
+I receieved 4 1 4
+Node 4: distance to (800, 600) is 174.32, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:39.863515
+I receieved 4 1 4
+Node 4: distance to (800, 600) is 94.32, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:40.872718
+I receieved 4 1 4
+Node 4: distance to (800, 600) is 14.32, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:41.883549
+I receieved 4 1 4
+Node 4: reached (800, 600), setting next waypoint (1000, 800)
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:42.898235
+I receieved 4 1 4
+I receieved 1 1 4
+Node 4: distance to (1000, 800) is 204.04, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:43.905958
+I receieved 4 1 4
+I receieved 1 1 4
+Node 4: distance to (1000, 800) is 124.04, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:44.916986
+I receieved 4 1 4
+Node 4: distance to (1000, 800) is 60.04, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:45.927547
+I receieved 4 1 4
+Node 4: distance to (1000, 800) is 12.04, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:46.936283
+I receieved 4 1 4
+Node 4: reached (1000, 800), setting next waypoint (1350, 800)
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:47.949316
+I receieved 4 1 4
+Node 4: distance to (1350, 800) is 267.20, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:48.958671
+I receieved 4 1 4
+Node 4: distance to (1350, 800) is 187.20, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:49.968588
+I receieved 4 1 4
+Node 4: distance to (1350, 800) is 107.20, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:50.977678
+I receieved 4 1 4
+Node 4: distance to (1350, 800) is 27.20, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:51.989270
+I receieved 4 1 4
+Node 4: distance to (1350, 800) is 11.20, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:53.001535
+I receieved 4 1 4
+Node 4: reached (1350, 800), setting next waypoint (1000, 800)
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:54.028066
+I receieved 4 1 4
+Node 4: distance to (1000, 800) is 274.80, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:55.040373
+I receieved 4 1 4
+Node 4: distance to (1000, 800) is 210.80, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:56.053984
+I receieved 4 1 4
+Node 4: distance to (1000, 800) is 130.80, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:57.067316
+I receieved 4 1 4
+Node 4: distance to (1000, 800) is 50.80, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:58.084232
+I receieved 4 1 4
+Node 4: reached (1000, 800), setting next waypoint (600, 800)
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:18:59.161737
+I receieved 4 1 4
+Node 4: distance to (600, 800) is 402.80, not updating
+AdvertiseUDP (broadcast)
+timestamp:  2025-05-11 22:19:00.205658
+Traceback (most recent call last):
+  File "/home/ee597/uav/workingCode/encounter.py", line 318, in <module>
+    main()
+  File "/home/ee597/uav/workingCode/encounter.py", line 305, in main
+    SprayAndWaitAdvert()
+  File "/home/ee597/uav/workingCode/encounter.py", line 222, in SprayAndWaitAdvert
+    AdvertiseUDP(uavnode.nodeid, uavnode.bufferCount, destination)
+  File "/home/ee597/uav/workingCode/encounter.py", line 119, in AdvertiseUDP
+    sk.sendto(buf.encode(encoding='utf-8',errors='strict'), ('255.255.255.255', port))
+OSError: [Errno 101] Network is unreachable
+vcmd[24041]: 22:19:01.064470 vcmd_ioerrorcb[vcmd_main.c:216]: i/o error
+vcmd[24041]: 22:19:01.065147 vcmd_cmddonecb[vcmd_main.c:162]: unexpected termination status for command 0: 0xffffffff
